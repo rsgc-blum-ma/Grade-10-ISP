@@ -8,39 +8,45 @@ boolean startScreen = true;
 // Starting screen
 void setup() {
   size(1200, 600);
- 
+
+  xPos = width/2;
+  yPos = height/2;
 }
 
 // create a level
 
 void draw() {
   background(26555);
-  
-  if(startScreen)
+
+  if (startScreen)
   {
     fill(127, 0, 0);
-  rect(0, 0, 1200, 600);
-  textSize(50); 
-  fill(0);
-  textAlign(CENTER, CENTER);
-  text(" Game Name ", 600, 250);
-  text(" Press 1 to start ", 600, 350); 
-  }
-  else
-  {
-  
-    fill(#B43E07);
-     xPos = width/2;
-    yPos = height/2;
-    speed = 2;
-    moveLeft = moveRight = moveUp = moveDown = false;
-  
-  if (moveLeft) xPos -= speed;
-  if (moveRight) xPos += speed;
-  if (moveUp) yPos -= speed;
-  if (moveDown) yPos += speed;
+    rect(0, 0, 1200, 600);
+    textSize(50); 
+    fill(0);
+    textAlign(CENTER, CENTER);
+    text(" Game Name ", 600, 250);
+    text(" Press 1 to start ", 600, 350);
+  } else {
 
-  ellipse(xPos - 590, yPos - 290, 30, 30);
+    fill(#B43E07);
+    speed = 2;
+
+    if (moveLeft){
+      xPos -= speed;
+    }
+    if (moveRight){
+      xPos += speed;
+    }
+    if (moveUp){
+      yPos -= speed;
+    }
+    if (moveDown){
+      yPos += speed;
+    }
+    
+    println(xPos) ;
+    ellipse(xPos - 590, yPos - 290, 30, 30);
   }
 }
 
@@ -56,21 +62,23 @@ void keyPressed() {
       moveDown = true;
     }
   }
-  
-  if(key == '1')startScreen = false;
+
+  if (key == '1'){
+    startScreen = false;
+  }
 }
 
 void keyReleased() {
 
- if (key == CODED) {
-   if (keyCode == LEFT) {
-     moveLeft = false;
-   } else if (keyCode == RIGHT) {
-     moveRight = false;
-   } else if (keyCode == UP) {
-     moveUp = false;
-   } else if (keyCode == DOWN) {
-     moveDown = false;
-   }
- }
-}
+  if (key == CODED) {
+    if (keyCode == LEFT) {
+      moveLeft = false;
+    } else if (keyCode == RIGHT) {
+      moveRight = false;
+    } else if (keyCode == UP) {
+      moveUp = false;
+    } else if (keyCode == DOWN) {
+      moveDown = false;
+    }
+  }
+} 
