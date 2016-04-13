@@ -48,8 +48,19 @@ void draw() {
     println(xPos) ;
     ellipse(xPos - 590, yPos - 290, 30, 30);
   }
-}
 
+ if (xPos > width+570 || xPos<1) 
+ 
+  {
+    xPos=-xPos;                                  
+  }
+  if (yPos > height+270 || yPos<1)               
+  {
+    yPos=-yPos;                                  
+  }
+
+
+}
 void keyPressed() {
   if (key == CODED) {
     if (keyCode == LEFT) {
