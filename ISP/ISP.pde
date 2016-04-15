@@ -18,13 +18,14 @@ void setup() {
 void draw() {
   background(26555);
 
+
   if (startScreen)
   {
     fill(127, 0, 0);
     rect(0, 0, 1200, 600);
     textSize(50); 
     fill(0);
-    textAlign(CENTER, CENTER);
+    textAlign(CENTER, CENTER);    
     text(" Game Name ", 600, 250);
     text(" Press 1 to start ", 600, 350);
   } else {
@@ -32,34 +33,52 @@ void draw() {
     fill(#B43E07);
     speed = 2;
 
-    if (moveLeft){
+    fill(150, 10, 10);
+    rect(1150, 550, 50, 50); 
+
+    fill(#B43E07);
+
+    if (moveLeft) {
       xPos -= speed;
     }
-    if (moveRight){
+    if (moveRight) {
       xPos += speed;
     }
-    if (moveUp){
+    if (moveUp) {
       yPos -= speed;
     }
-    if (moveDown){
+    if (moveDown) {
       yPos += speed;
     }
-    
+
     println(xPos) ;
     ellipse(xPos - 590, yPos - 290, 30, 30);
   }
 
- if (xPos > width+570 || xPos<1) 
+
+
+  if (xPos > width+570 || xPos<1) // location of border
+
+  {
+    xPos-=4;
+  }
+  if (yPos > height+270 || yPos<1)    // location of border           
+  {
+    yPos-=4;
+  }
+  if (xPos <= 600)
+  {
+    xPos += 4;
+  }
+  if (yPos <= 300)
+  {
+    yPos += 4;
+  }
+
+  // Finish Line (never changes)
+
  
-  {
-    xPos=-xPos;                                  
-  }
-  if (yPos > height+270 || yPos<1)               
-  {
-    yPos=-yPos;                                  
-  }
-
-
+ 
 }
 void keyPressed() {
   if (key == CODED) {
@@ -74,7 +93,7 @@ void keyPressed() {
     }
   }
 
-  if (key == '1'){
+  if (key == '1') {
     startScreen = false;
   }
 }
