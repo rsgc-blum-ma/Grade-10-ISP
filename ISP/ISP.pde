@@ -1,23 +1,37 @@
 // create Variables for Movement of character
-float xPos;
-float yPos;
-float speed;
-boolean moveLeft, moveRight, moveUp, moveDown;
+float xPos; // position of character in X
+float yPos; // position of character in Y
+float speed; // speed of character
+
+boolean moveLeft, moveRight, moveUp, moveDown; // Key values
+
+float Ent_x; // Position of Enemy X
+float Ent_y; // Position of Enemy Y
+float Ent_dir = 1;
+float Ent_size = 30;  // Radius of Enemy
+float dy = 0;  // Direction of Enemy
+
 
 boolean startScreen = true;
 // Starting screen
 void setup() {
   size(1200, 600);
-
+  // moving values for characters
   xPos = width/2;
   yPos = height/2;
+
+  Ent_y = height/2;
+
+  Ent_x = 12;
 }
+
 
 // create a level
 
 void draw() {
   background(26555);
 
+  // Draw starting screen
 
   if (startScreen)
   {
@@ -29,6 +43,7 @@ void draw() {
     text(" Game Name ", 600, 250);
     text(" Press 1 to start ", 600, 350);
   } else {
+    // Draw Level 1
 
     fill(#B43E07);
     speed = 2;
@@ -37,6 +52,21 @@ void draw() {
     rect(1150, 550, 50, 50); 
 
     fill(#B43E07);
+
+
+    // Create Variables and Borders for the Characters
+   
+   
+
+    
+    fill(#B43E07);
+  println(Ent_x) ;
+    rect(Ent_x, Ent_y, Ent_size, Ent_size);
+
+    
+// Speed variables for Character
+
+
 
     if (moveLeft) {
       xPos -= speed;
@@ -50,12 +80,15 @@ void draw() {
     if (moveDown) {
       yPos += speed;
     }
+    
+    // Draw Character
 
+    fill(#B43E07);
     println(xPos) ;
     ellipse(xPos - 590, yPos - 290, 30, 30);
   }
 
-
+  // Borders for character
 
   if (xPos > width+570 || xPos<1) // location of border
 
@@ -75,10 +108,19 @@ void draw() {
     yPos += 4;
   }
 
-  // Finish Line (never changes)
+  // Borders for Entity 
 
- 
- 
+  if (Ent_x > width+570 || Ent_x<1) // location of border
+
+  {
+    Ent_x-=4;
+  }
+  if (Ent_x <= 1165)
+  {
+    Ent_x += 4;
+  }
+
+  // Finish Line (never changes)
 }
 void keyPressed() {
   if (key == CODED) {
