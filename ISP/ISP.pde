@@ -4,6 +4,7 @@ float yPos; // position of character in Y
 float speed; // speed of character
 
 boolean moveLeft, moveRight, moveUp, moveDown; // Key values
+boolean squareRight, squareLeft, squareUp, squareDown;
 
 float Ent_x; // Position of Enemy X
 float Ent_y; // Position of Enemy Y
@@ -23,6 +24,8 @@ void setup() {
   Ent_y = height/2;
 
   Ent_x = 12;
+  
+  squareRight = true;
 }
 
 
@@ -30,7 +33,7 @@ void setup() {
 
 void draw() {
   background(26555);
-
+isTouching();
   // Draw starting screen
 
   if (startScreen)
@@ -66,7 +69,10 @@ void draw() {
     
 // Speed variables for Character
 
-
+if(squareRight)
+{
+ Ent_x += speed; 
+}else Ent_x -= speed;
 
     if (moveLeft) {
       xPos -= speed;
@@ -110,14 +116,18 @@ void draw() {
 
   // Borders for Entity 
 
-  if (Ent_x > width+570 || Ent_x<1) // location of border
+  if (Ent_x >= width ) // location of border
 
   {
-    Ent_x-=4;
+    Ent_x-=10;
+    squareRight = false;
+    squareLeft = true;
   }
-  if (Ent_x <= 1165)
+  if (Ent_x <= 0)
   {
     Ent_x += 4;
+    squareRight = true;
+    squareLeft = false;
   }
 
   // Finish Line (never changes)
@@ -138,6 +148,8 @@ void keyPressed() {
   if (key == '1') {
     startScreen = false;
   }
+  
+  
 }
 
 void keyReleased() {
@@ -154,3 +166,8 @@ void keyReleased() {
     }
   }
 } 
+
+void isTouching()
+{
+  if(sqrt(sq((xPos - 590) - Ent_x) + sq((yPos - 290) - Ent_y)) < 15)noLoop(); 
+}
