@@ -1,21 +1,25 @@
+PImage Gordon;
 // create Variables for Movement of character
 float xPos; // position of character in X
 float yPos; // position of character in Y
 float speed; // speed of character
 
+
+boolean startScreen = true;
 boolean moveLeft, moveRight, moveUp, moveDown; // Key values
-boolean squareRight, squareLeft, squareUp, squareDown;
+boolean squareRight, squareLeft, squareUp, squareDown; //Entities Values
 
 float Ent_x; // Position of Enemy X
 float Ent_y; // Position of Enemy Y
-float Ent_dir = 1;
+float Ent_dir = 1; // 
 float Ent_size = 30;  // Radius of Enemy
 float dy = 0;  // Direction of Enemy
 
 
-boolean startScreen = true;
+
 // Starting screen
 void setup() {
+  Gordon = loadImage("RgOrdon.png");
   size(1200, 600);
   // moving values for characters
   xPos = width/2;
@@ -24,7 +28,7 @@ void setup() {
   Ent_y = height/2;
 
   Ent_x = 12;
-  
+
   squareRight = true;
 }
 
@@ -33,7 +37,8 @@ void setup() {
 
 void draw() {
   background(26555);
-isTouching();
+  TouchingEnt();  
+
   // Draw starting screen
 
   if (startScreen)
@@ -52,41 +57,45 @@ isTouching();
     speed = 2;
 
     fill(150, 10, 10);
-    rect(1150, 550, 50, 50); 
 
-    fill(#B43E07);
+    // Finish line
+
+    rect(1150, 550, 50, 50); 
 
 
     // Create Variables and Borders for the Characters
-   
-   
 
-    
+
+
+
     fill(#B43E07);
-  println(Ent_x) ;
-    rect(Ent_x, Ent_y, Ent_size, Ent_size);
+    println(Ent_x) ;
+    pushMatrix();
+    scale(5);
+    image(Gordon, Ent_x/5, Ent_y/5, Ent_size, Ent_size);
+    popMatrix();
 
-    
-// Speed variables for Character
 
-if(squareRight)
-{
- Ent_x += speed; 
-}else Ent_x -= speed;
+    // Speed variables for Character
+
+    if (squareRight)
+    {
+      Ent_x += speed*2.5;
+    } else Ent_x -= speed*2.5;
 
     if (moveLeft) {
-      xPos -= speed;
+      xPos -= speed+1;
     }
     if (moveRight) {
-      xPos += speed;
+      xPos += speed+1;
     }
     if (moveUp) {
-      yPos -= speed;
+      yPos -= speed+1;
     }
     if (moveDown) {
-      yPos += speed;
+      yPos += speed+1;
     }
-    
+
     // Draw Character
 
     fill(#B43E07);
@@ -99,7 +108,7 @@ if(squareRight)
   if (xPos > width+570 || xPos<1) // location of border
 
   {
-    xPos-=4;
+    xPos-=4; // resistance
   }
   if (yPos > height+270 || yPos<1)    // location of border           
   {
@@ -129,8 +138,6 @@ if(squareRight)
     squareRight = true;
     squareLeft = false;
   }
-
-  // Finish Line (never changes)
 }
 void keyPressed() {
   if (key == CODED) {
@@ -148,8 +155,6 @@ void keyPressed() {
   if (key == '1') {
     startScreen = false;
   }
-  
-  
 }
 
 void keyReleased() {
@@ -166,8 +171,12 @@ void keyReleased() {
     }
   }
 } 
-
-void isTouching()
+// give 
+void TouchingEnt()
 {
-  if(sqrt(sq((xPos - 590) - Ent_x) + sq((yPos - 290) - Ent_y)) < 15)noLoop(); 
+  if ((sqrt(sq((xPos - 620 - 15) - Ent_x) + sq((yPos - 305 - 25) - Ent_y))) < 35)
+  {
+    
+    noLoop(); // Stop Drawing
+  }
 }
