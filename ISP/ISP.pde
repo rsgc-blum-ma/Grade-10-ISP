@@ -8,8 +8,16 @@ float speed; // speed of character
 boolean startScreen = true;
 boolean moveLeft, moveRight, moveUp, moveDown; // Key values
 boolean squareRight, squareLeft, squareUp, squareDown; //Entities Values
+boolean squareRight2, squareLeft2, squareUp2, squareDown2; //Entities Values
+boolean squareRight3, squareLeft3, squareUp3, squareDown3; //Entities Values
+boolean squareRight4, squareLeft4, squareUp4, squareDown4; //Entities Values
 
 float Ent_x; // Position of Enemy X
+float Ent_x2;
+float Ent_x3;
+float Ent_x4;
+float Ent_x5;
+float Ent_x6;
 float Ent_y; // Position of Enemy Y
 float Ent_dir = 1; // 
 float Ent_size = 30;  // Radius of Enemy
@@ -28,8 +36,13 @@ void setup() {
   Ent_y = height/2;
 
   Ent_x = 12;
-
+  Ent_x2 = 50;
+  Ent_x3 = 620;
+  Ent_x4 = 700;
   squareRight = true;
+  squareRight2 = true;
+  squareRight3 = true;
+  squareRight4 = true;
 }
 
 
@@ -62,6 +75,8 @@ void draw() {
 
     rect(1150, 550, 50, 50); 
 
+    // start line 
+    rect(0, 0, 50, 50); 
 
     // Create Variables and Borders for the Characters
 
@@ -70,9 +85,16 @@ void draw() {
 
     fill(#B43E07);
     println(Ent_x) ;
+    println(Ent_x2) ;
+    println(Ent_x3) ;
+    println(Ent_x4) ;
     pushMatrix();
     scale(5);
-    image(Gordon, Ent_x/5, Ent_y/5, Ent_size, Ent_size);
+    image(Gordon, Ent_x/5, Ent_y/5, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x2/5, Ent_y/3, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x3/5, Ent_y/15, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x3/5, Ent_y/25, Ent_size-10, Ent_size-10);
+    
     popMatrix();
 
 
@@ -80,17 +102,34 @@ void draw() {
 
     if (squareRight)
     {
-      Ent_x += speed*2.5;
-    } else Ent_x -= speed*2.5;
+      Ent_x += speed*3;
+    } else {
+      Ent_x -= speed*3;
+    }
 
+    if (squareRight2)
+    {
+
+      Ent_x2 += speed*3;
+    } else {
+      Ent_x2 -= speed*3;
+    }
+
+    if (squareRight3)
+    {
+
+      Ent_x3 += speed*3;
+    } else {
+      Ent_x3 -= speed*3;
+    }
     if (moveLeft) {
       xPos -= speed+1;
     }
     if (moveRight) {
-      xPos += speed+1;
+      xPos += speed+2;
     }
     if (moveUp) {
-      yPos -= speed+1;
+      yPos -= speed+2;
     }
     if (moveDown) {
       yPos += speed+1;
@@ -125,7 +164,7 @@ void draw() {
 
   // Borders for Entity 
 
-  if (Ent_x >= width ) // location of border
+  if (Ent_x >= width-30 ) // location of border
 
   {
     Ent_x-=10;
@@ -138,7 +177,58 @@ void draw() {
     squareRight = true;
     squareLeft = false;
   }
+
+  if (Ent_x2 >= width-30 ) // location of border
+
+  {
+    Ent_x2-=10;
+    squareRight2 = false;
+    squareLeft2 = true;
+  }
+  if (Ent_x2 <= 0)
+  {
+    Ent_x2 += 4;
+    squareRight2 = true;
+    squareLeft2 = false;
+  }
+
+  if (Ent_x3 >= width-30 ) // location of border
+
+  {
+    Ent_x3-=10;
+    squareRight3 = false;
+    squareLeft3 = true;
+  }
+  if (Ent_x3 <= 0)
+  {
+    Ent_x3 += 4;
+    squareRight3 = true;
+    squareLeft3 = false;
+  }
+    if (Ent_x4 >= width-30 ) // location of border
+
+  {
+    Ent_x4-=10;
+    squareRight4 = false;
+    squareLeft4 = true;
+  }
+  if (Ent_x4 <= 0)
+  {
+    Ent_x4 += 4;
+    squareRight4 = true;
+    squareLeft4 = false;
+  }
 }
+
+
+
+
+// Level 1 Border
+
+
+
+
+
 void keyPressed() {
   if (key == CODED) {
     if (keyCode == LEFT) {
@@ -174,9 +264,25 @@ void keyReleased() {
 // give 
 void TouchingEnt()
 {
-  if ((sqrt(sq((xPos - 620 - 15) - Ent_x) + sq((yPos - 305 - 25) - Ent_y))) < 35)
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 305 - 15) - Ent_y))) < 35)
   {
-    
+
+    noLoop(); // Stop Drawing
+  }
+  if ((sqrt(sq((xPos - 615 - 15) - Ent_x2) + sq((yPos - 425 - 95) - Ent_y))) < 35)
+  {
+
+    noLoop(); // Stop Drawing
+  }
+
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x3) + sq((yPos - 200 + 80) - Ent_y))) < 35)
+  {
+
+    noLoop(); // Stop Drawing
+  }
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x3) + sq((yPos - 150 + 80) - Ent_y))) < 35)
+  {
+
     noLoop(); // Stop Drawing
   }
 }
