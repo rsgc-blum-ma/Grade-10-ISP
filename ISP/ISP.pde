@@ -11,6 +11,8 @@ boolean squareRight, squareLeft, squareUp, squareDown; //Entities Values
 boolean squareRight2, squareLeft2, squareUp2, squareDown2; //Entities Values
 boolean squareRight3, squareLeft3, squareUp3, squareDown3; //Entities Values
 boolean squareRight4, squareLeft4, squareUp4, squareDown4; //Entities Values
+boolean squareRight5, squareLeft5, squareUp5, squareDown5; //Entities Values
+boolean squareRight6, squareLeft6, squareUp6, squareDown6; //Entities Values
 
 float Ent_x; // Position of Enemy X
 float Ent_x2;
@@ -35,10 +37,12 @@ void setup() {
 
   Ent_y = height/2;
 
-  Ent_x = 12;
-  Ent_x2 = 50;
-  Ent_x3 = 620;
-  Ent_x4 = 700;
+  Ent_x = 1;
+  Ent_x5 = 1;
+  Ent_x6 = 1;
+  Ent_x2 = 1200;
+  Ent_x3 = 1200;
+  Ent_x4 = 1200;
   squareRight = true;
   squareRight2 = true;
   squareRight3 = true;
@@ -75,8 +79,8 @@ void draw() {
 
     rect(1150, 550, 50, 50); 
 
-    // start line 
-    rect(0, 0, 50, 50); 
+   
+    
 
     // Create Variables and Borders for the Characters
 
@@ -88,13 +92,24 @@ void draw() {
     println(Ent_x2) ;
     println(Ent_x3) ;
     println(Ent_x4) ;
+    println(Ent_x5) ;
+    println(Ent_x6) ;
     pushMatrix();
     scale(5);
-    image(Gordon, Ent_x/5, Ent_y/5, Ent_size-10, Ent_size-10);
-    image(Gordon, Ent_x2/5, Ent_y/3, Ent_size-10, Ent_size-10);
-    image(Gordon, Ent_x3/5, Ent_y/15, Ent_size-10, Ent_size-10);
-    image(Gordon, Ent_x3/5, Ent_y/25, Ent_size-10, Ent_size-10);
-    
+    image(Gordon, Ent_x/5, 50, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x/5, 42, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x/5, 33, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x/5, 59, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x/5, 68, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x2/5, 100, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x2/5, 20, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x2/5, 12, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x2/5, 4, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x2/5, -2, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x2/5, 109, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x2/5, 91, Ent_size-10, Ent_size-10);
+    image(Gordon, Ent_x2/5, 82, Ent_size-10, Ent_size-10);
+
     popMatrix();
 
 
@@ -122,6 +137,19 @@ void draw() {
     } else {
       Ent_x3 -= speed*3;
     }
+    if (squareRight4)
+    {
+      Ent_x4 += speed*3;
+    } else {
+      Ent_x4 -= speed*3;
+    }
+     if (squareRight5)
+    {
+      Ent_x5 += speed*3;
+    } else {
+      Ent_x5 -= speed*3;
+    }
+    
     if (moveLeft) {
       xPos -= speed+1;
     }
@@ -191,8 +219,7 @@ void draw() {
     squareRight2 = true;
     squareLeft2 = false;
   }
-
-  if (Ent_x3 >= width-30 ) // location of border
+if (Ent_x3 >= width-30 ) // location of border
 
   {
     Ent_x3-=10;
@@ -205,7 +232,7 @@ void draw() {
     squareRight3 = true;
     squareLeft3 = false;
   }
-    if (Ent_x4 >= width-30 ) // location of border
+  if (Ent_x4 >= width-30 ) // location of border
 
   {
     Ent_x4-=10;
@@ -218,6 +245,33 @@ void draw() {
     squareRight4 = true;
     squareLeft4 = false;
   }
+   if (Ent_x5 >= width-30 ) // location of border
+
+  {
+    Ent_x5-=10;
+    squareRight5 = false;
+    squareLeft5 = true;
+  }
+  if (Ent_x5 <= 0)
+  {
+    Ent_x5 += 4;
+    squareRight5 = true;
+    squareLeft5 = false;
+  }
+   if (Ent_x6 >= width-30 ) // location of border
+
+  {
+    Ent_x6-=10;
+    squareRight6 = false;
+    squareLeft6 = true;
+  }
+  if (Ent_x6 <= 0)
+  {
+    Ent_x6 += 4;
+    squareRight6 = true;
+    squareLeft6 = false;
+  }
+
 }
 
 
@@ -269,18 +323,58 @@ void TouchingEnt()
 
     noLoop(); // Stop Drawing
   }
-  if ((sqrt(sq((xPos - 615 - 15) - Ent_x2) + sq((yPos - 425 - 95) - Ent_y))) < 35)
+   if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 345 - 15) - Ent_y))) < 35)
+  {
+
+    noLoop(); // Stop Drawing
+  }
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 265 - 15) - Ent_y))) < 35)
+  {
+
+    noLoop(); // Stop Drawing
+  }
+   if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 205 - 15) - Ent_y))) < 35)
+  {
+
+    noLoop(); // Stop Drawing
+  }
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 170 - 15) - Ent_y))) < 35)
+  {
+
+    noLoop(); // Stop Drawing
+  }
+  if ((sqrt(sq((xPos - 615 - 15) - Ent_x2) + sq((yPos - 595 + 80) - Ent_y))) < 35)
   {
 
     noLoop(); // Stop Drawing
   }
 
-  if ((sqrt(sq((xPos - 610 - 15) - Ent_x3) + sq((yPos - 200 + 80) - Ent_y))) < 35)
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 200 + 80) - Ent_y))) < 35)
   {
 
     noLoop(); // Stop Drawing
   }
-  if ((sqrt(sq((xPos - 610 - 15) - Ent_x3) + sq((yPos - 150 + 80) - Ent_y))) < 35)
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 150 + 80) - Ent_y))) < 35)
+  {
+
+    noLoop(); // Stop Drawing
+  }
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 100 + 80) - Ent_y))) < 35)
+  {
+
+    noLoop(); // Stop Drawing
+  }
+  if ((sqrt(sq((xPos - 615 - 15) - Ent_x2) + sq((yPos - 625 + 80) - Ent_y))) < 35)
+  {
+
+    noLoop(); // Stop Drawing
+  }
+  if ((sqrt(sq((xPos - 615 - 15) - Ent_x2) + sq((yPos - 575 + 80) - Ent_y))) < 35)
+  {
+
+    noLoop(); // Stop Drawing
+  }
+   if ((sqrt(sq((xPos - 615 - 15) - Ent_x2) + sq((yPos - 508 + 80) - Ent_y))) < 35)
   {
 
     noLoop(); // Stop Drawing
