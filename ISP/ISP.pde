@@ -74,7 +74,7 @@ void draw() {
     textSize(50); 
     fill(0);
     textAlign(CENTER, CENTER);    
-    text(" Game Name ", 600, 250);
+    text(" Gordon Dodge ", 600, 250);
     text(" Press 1 to start ", 600, 350);
   } else {
     // Draw Level 1
@@ -355,36 +355,42 @@ void TouchingEnt()
   {
 
     lives=lives+1;
+    isSquare = true;
     setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 345 - 15) - Ent_y))) < 35)
   {
 
     lives=lives+1;
+    isSquare = true;
     setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 265 - 15) - Ent_y))) < 35)
   {
 
     lives=lives+1;
+    isSquare = true;
     setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 205 - 15) - Ent_y))) < 35)
   {
 
     lives=lives+1;
+    isSquare = true;
     setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 170 - 15) - Ent_y))) < 35)
   {
 
     lives=lives+1;
+    isSquare = true;
     setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 595 + 80) - Ent_y))) < 35)
   {
 
     lives=lives+1;
+    isSquare = true;
     setup();
   }
 
@@ -392,6 +398,7 @@ void TouchingEnt()
   {
 
     lives=lives+1;
+    isSquare = true;
     setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 150 + 80) - Ent_y))) < 35)
@@ -404,26 +411,32 @@ void TouchingEnt()
   {
 
     lives=lives+1;
+    isSquare = true;
     setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 625 + 80) - Ent_y))) < 35)
   {
 
     lives=lives+1;
+    isSquare = true;
     setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 575 + 80) - Ent_y))) < 35)
   {
 
     lives=lives+1;
+    isSquare = true;
     setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 508 + 80) - Ent_y))) < 35)
   {
 
     lives=lives+1;
+    isSquare = true;
     setup();
   }
+  
+  // Finish line
   
   if (isSquare != true){
     if(xPos - 570 >= 1150 && xPos - 570 <= 1200 && yPos - 270 >= 550 && yPos - 270 <= 600){
