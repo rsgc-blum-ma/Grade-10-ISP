@@ -3,7 +3,12 @@ PImage Gordon;
 float xPos; // position of character in X
 float yPos; // position of character in Y
 float speed; // speed of character
+int lives=1;
+int coin=1;
+float coinX;
+float coinY;
 
+boolean isSquare = true;
 
 boolean startScreen = true;
 boolean moveLeft, moveRight, moveUp, moveDown; // Key values
@@ -31,6 +36,8 @@ float dy = 0;  // Direction of Enemy
 void setup() {
   Gordon = loadImage("RgOrdon.png");
   size(1200, 600);
+  
+  
   // moving values for characters
   xPos = width/2;
   yPos = height/2;
@@ -47,6 +54,8 @@ void setup() {
   squareRight2 = true;
   squareRight3 = true;
   squareRight4 = true;
+  coinX=0;
+  coinY=0;
 }
 
 
@@ -78,9 +87,20 @@ void draw() {
     // Finish line
 
     rect(1150, 550, 50, 50); 
+    textSize(24);
 
-   
+    // Life counter
+    text("Death Count = "+lives, 100, 580);
+
+    // coins
+    //println(coinX);
+    //println(coinY);
     
+    if(isSquare)
+    {
+    rect(coinX+590, coinY+290, 20, 20);
+    }
+
 
     // Create Variables and Borders for the Characters
 
@@ -88,12 +108,12 @@ void draw() {
 
 
     fill(#B43E07);
-    println(Ent_x) ;
-    println(Ent_x2) ;
-    println(Ent_x3) ;
-    println(Ent_x4) ;
-    println(Ent_x5) ;
-    println(Ent_x6) ;
+    //println(Ent_x) ;
+    //println(Ent_x2) ;
+    //println(Ent_x3) ;
+    //println(Ent_x4) ;
+    //println(Ent_x5) ;
+    //println(Ent_x6) ;
     pushMatrix();
     scale(5);
     image(Gordon, Ent_x/5, 50, Ent_size-10, Ent_size-10);
@@ -143,13 +163,13 @@ void draw() {
     } else {
       Ent_x4 -= speed*3;
     }
-     if (squareRight5)
+    if (squareRight5)
     {
       Ent_x5 += speed*3;
     } else {
       Ent_x5 -= speed*3;
     }
-    
+
     if (moveLeft) {
       xPos -= speed+1;
     }
@@ -169,6 +189,7 @@ void draw() {
     println(xPos) ;
     ellipse(xPos - 590, yPos - 290, 30, 30);
   }
+ 
 
   // Borders for character
 
@@ -219,7 +240,7 @@ void draw() {
     squareRight2 = true;
     squareLeft2 = false;
   }
-if (Ent_x3 >= width-30 ) // location of border
+  if (Ent_x3 >= width-30 ) // location of border
 
   {
     Ent_x3-=10;
@@ -245,7 +266,7 @@ if (Ent_x3 >= width-30 ) // location of border
     squareRight4 = true;
     squareLeft4 = false;
   }
-   if (Ent_x5 >= width-30 ) // location of border
+  if (Ent_x5 >= width-30 ) // location of border
 
   {
     Ent_x5-=10;
@@ -258,7 +279,7 @@ if (Ent_x3 >= width-30 ) // location of border
     squareRight5 = true;
     squareLeft5 = false;
   }
-   if (Ent_x6 >= width-30 ) // location of border
+  if (Ent_x6 >= width-30 ) // location of border
 
   {
     Ent_x6-=10;
@@ -271,7 +292,8 @@ if (Ent_x3 >= width-30 ) // location of border
     squareRight6 = true;
     squareLeft6 = false;
   }
-
+  
+  
 }
 
 
@@ -298,8 +320,9 @@ void keyPressed() {
 
   if (key == '1') {
     startScreen = false;
+  } 
   }
-}
+
 
 void keyReleased() {
 
@@ -318,65 +341,93 @@ void keyReleased() {
 // give 
 void TouchingEnt()
 {
+  // for coints
+  
+  if((xPos-570 >= 590 && xPos-570 <= 610)  && (yPos-270 >= 290 && yPos-270 <= 310)){ 
+   isSquare = false; 
+}
+//  
+
+  // for gordons
+  
+  
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 305 - 15) - Ent_y))) < 35)
   {
 
-    noLoop(); // Stop Drawing
+    lives=lives+1;
+    setup();
   }
-   if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 345 - 15) - Ent_y))) < 35)
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 345 - 15) - Ent_y))) < 35)
   {
 
-    noLoop(); // Stop Drawing
+    lives=lives+1;
+    setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 265 - 15) - Ent_y))) < 35)
   {
 
-    noLoop(); // Stop Drawing
+    lives=lives+1;
+    setup();
   }
-   if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 205 - 15) - Ent_y))) < 35)
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 205 - 15) - Ent_y))) < 35)
   {
 
-    noLoop(); // Stop Drawing
+    lives=lives+1;
+    setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x) + sq((yPos - 170 - 15) - Ent_y))) < 35)
   {
 
-    noLoop(); // Stop Drawing
+    lives=lives+1;
+    setup();
   }
-  if ((sqrt(sq((xPos - 615 - 15) - Ent_x2) + sq((yPos - 595 + 80) - Ent_y))) < 35)
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 595 + 80) - Ent_y))) < 35)
   {
 
-    noLoop(); // Stop Drawing
+    lives=lives+1;
+    setup();
   }
 
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 200 + 80) - Ent_y))) < 35)
   {
 
-    noLoop(); // Stop Drawing
+    lives=lives+1;
+    setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 150 + 80) - Ent_y))) < 35)
   {
 
-    noLoop(); // Stop Drawing
+    lives=lives+1;
+    setup();
   }
   if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 100 + 80) - Ent_y))) < 35)
   {
 
-    noLoop(); // Stop Drawing
+    lives=lives+1;
+    setup();
   }
-  if ((sqrt(sq((xPos - 615 - 15) - Ent_x2) + sq((yPos - 625 + 80) - Ent_y))) < 35)
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 625 + 80) - Ent_y))) < 35)
   {
 
-    noLoop(); // Stop Drawing
+    lives=lives+1;
+    setup();
   }
-  if ((sqrt(sq((xPos - 615 - 15) - Ent_x2) + sq((yPos - 575 + 80) - Ent_y))) < 35)
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 575 + 80) - Ent_y))) < 35)
   {
 
-    noLoop(); // Stop Drawing
+    lives=lives+1;
+    setup();
   }
-   if ((sqrt(sq((xPos - 615 - 15) - Ent_x2) + sq((yPos - 508 + 80) - Ent_y))) < 35)
+  if ((sqrt(sq((xPos - 610 - 15) - Ent_x2) + sq((yPos - 508 + 80) - Ent_y))) < 35)
   {
 
-    noLoop(); // Stop Drawing
+    lives=lives+1;
+    setup();
+  }
+  
+  if (isSquare != true){
+    if(xPos - 570 >= 1150 && xPos - 570 <= 1200 && yPos - 270 >= 550 && yPos - 270 <= 600){
+      noLoop();
+    }
   }
 }
